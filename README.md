@@ -6,8 +6,9 @@
 
 # Abstract:
 
-If you follow the below steps on greed field, configured, Red Hat CloudForms appliance(s), Hybrid Cloud Provisioning with Infrastructure Providers (RHEV, vCenter), a Configuration Management Provider (Satellite) and an Automation Provider (Ansible Tower) becomes a reality.  Simply follow the steps listed below and "it just works".
+If you follow the below steps on a green-field, configured, Red Hat CloudForms appliance(s), Hybrid Cloud Provisioning with Infrastructure Providers (RHEV, vCenter), a Configuration Management Provider (Satellite) and an Automation Provider (Ansible Tower) becomes a reality.  Simply follow the steps listed below and "it just works".
 
+This is a subset and modified version of the origina document [https://github.com/RedHatOfficial/miq-RedHat-Satellite6/blob/master/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat-Satellite6/blob/master/INSTALL.md).
 
 # Assumptions:
 
@@ -102,8 +103,10 @@ If you follow the below steps on greed field, configured, Red Hat CloudForms app
 
 *   Import miq-RedHat-Satellite6
     *   [https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git](https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git)
+		*   For the purposes of this lab, select Tag `v8.3`
 *   Import miq-Utilities
     *   [https://github.com/RedHatOfficial/miq-Utilities.git](https://github.com/RedHatOfficial/miq-Utilities.git)
+		*   For the purposes of this lab, select Tag `v9.1`
 
 
 ## Automate Domain Priority:
