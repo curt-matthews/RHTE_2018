@@ -93,27 +93,8 @@ If you follow the below steps on greed field, configured, Red Hat CloudForms app
         *   (network_nameservers: [10.10.10.2,10.10.10.3]
         *   (network_ddi_provider): satellite
 
-### Email Configuration (Optional):
-
-*   In order to modify the from email address, override each of the following and change from_email_address value:
-    *   Copy the following instances into your Configuration domain from RedHatConsulting_Utilities/Infrastructure/VM/Provisioning/Email
-        *   MiqProvision_Complete
-        *   MiqProvision_Update
-        *   MiqProvisionRequest_Approved
-        *   MiqProvisionRequest_Denied
-        *   MiqProvisionRequest_Pending
-    *   Copy the following instance into your Configuration domain from RedHatConsulting_Utilities/Infrastructure/VM/Retirement/Email
-        *   Vm_retirement_emails
-*   In order to stop Reconfigure notifications, override and blank all values in the following Instances
-    *   Copy the following into your Configuration domain
-        *   ManageIQ/Infrastructure/VM/Reconfigure/Email/VmReconfigureRequestApproved
-    *   Copy the following instance into your Configuration domain
-        *   ManageIQ/Infrastructure/VM/Reconfigure/Email/VmReconfigureTaskComplete
-
 
 ## Import Upstream Domains:
-
-
 
 *   [Understanding the Automate Model - Importing a Domain](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/scripting_actions_in_cloudforms/understanding-the-automate-model#importing-a-domain) explains how to import the required Automate domains.  The relevant repositories with links are included below.  In order to control release, you may want to choose a specific branch or tag.
 
@@ -142,22 +123,19 @@ If you follow the below steps on greed field, configured, Red Hat CloudForms app
 
 ## Install cfme-rhconsulting-scripts per instructions:
 
-
+*  For the purpose of this lab, the cfme-rhconsulting-scripts repository has been cloned to `/root/src/cfme-rhconfulting-scripts/` and installed per the instructions in the link below.  Installation of these scripts provides the miqimport command required in the next steps.
 
 *   [https://github.com/rhtconsulting/cfme-rhconsulting-scripts#install](https://github.com/rhtconsulting/cfme-rhconsulting-scripts#install)
 
 
 ## Import Service Dialog and Catalog Items:
 
-*  For the purposes of this lab, the version will be `v5.9`.
-
-
-*   Clone miq-RedHat-Satellite6 repository
-    *   git clone https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git
+*   We have cloned tag v8.3 of the miq-RedHat-Satellite6 repository to `/root/src/miq-RedHat-Satellite6` for your convenience.
+    * The repository contains dialogs for versions CFME 4.5 (5.8) and 4.6 (5.9), the latter of which is being used for this lab.
 *   Import Service Dialog
-    *   miqimport service_dialogs miq-RedHat-Satellite6/Dialogs/<version>
+    *   miqimport service_dialogs miq-RedHat-Satellite6/Dialogs/v5.9
 *   Import Catalog
-    *   miqimport service_catalogs miq-RedHat-Satellite6/Catalogs/<version>
+    *   miqimport service_catalogs miq-RedHat-Satellite6/Catalogs/v5.9
 
 
 # Tagging:
