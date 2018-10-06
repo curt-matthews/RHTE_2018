@@ -8,7 +8,7 @@
 
 If you follow the below steps on a green-field, configured, Red Hat CloudForms appliance(s), Hybrid Cloud Provisioning with Infrastructure Providers (RHEV, vCenter), a Configuration Management Provider (Satellite) and an Automation Provider (Ansible Tower) becomes a reality.  Simply follow the steps listed below and "it just works".
 
-This is a subset and modified version of the origina document [https://github.com/RedHatOfficial/miq-RedHat-Satellite6/blob/master/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat-Satellite6/blob/master/INSTALL.md).
+This is a subset and modified version of the original document [https://github.com/RedHatOfficial/miq-RedHat-Satellite6/blob/master/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat-Satellite6/blob/master/INSTALL.md).
 
 # Assumptions:
 
