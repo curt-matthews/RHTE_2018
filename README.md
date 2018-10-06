@@ -149,6 +149,7 @@ If you follow the below steps on greed field, configured, Red Hat CloudForms app
 
 ## Import Service Dialog and Catalog Items:
 
+*  For the purposes of this lab, the version will be `v5.9`.
 
 
 *   Clone miq-RedHat-Satellite6 repository
