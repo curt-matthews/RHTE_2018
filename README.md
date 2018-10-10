@@ -101,17 +101,14 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 # Service Dialogs and Catalogs:
 
-*   A pre-configured catalog and associated service dialog are provided as part of the miq-RedHat-Satellite6 project on Github.  Complete the following steps to import these items.
-
-## Install cfme-rhconsulting-scripts per instructions:
+*   Pre-configured catalog and associated service dialogs are provided as part of the miq-RedHat-Satellite6 project on Github.  Complete the following steps to import these items.
 
 *  For the purpose of this lab, the cfme-rhconsulting-scripts repository has been cloned to `/root/src/cfme-rhconfulting-scripts/` and installed per the instructions in the link below.  Installation of these scripts provides the miqimport command required in the next steps.
-
-*   [https://github.com/rhtconsulting/cfme-rhconsulting-scripts#install](https://github.com/rhtconsulting/cfme-rhconsulting-scripts#install)
+    *   [https://github.com/rhtconsulting/cfme-rhconsulting-scripts#install](https://github.com/rhtconsulting/cfme-rhconsulting-scripts#install)
 
 ## Import Service Dialog and Catalog Items:
 
-*   We have cloned tag v8.4 of the miq-RedHat-Satellite6 repository to `/root/src/miq-RedHat-Satellite6` for your convenience.
+*   We have cloned tag v8.4 of the miq-RedHat-Satellite6 repository to `/root/src/miq-RedHat-Satellite6` on cf.example.com for your convenience.
     * The repository contains dialogs for versions CFME 4.5 (5.8) and 4.6 (5.9), the latter of which is being used for this lab.
 *   Import Service Dialog
     *   miqimport service_dialogs miq-RedHat-Satellite6/Dialogs/v5.9
@@ -148,7 +145,6 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 ### Operating System Tags:
 
 *   Create Tag for each Operating System Supported
-    *   i.e. name: rhel6, description: RHEL 6
     *   i.e. name: rhel7, description: RHEL 7
 
 ### Infrastructure Provider Tags:
