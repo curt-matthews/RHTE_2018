@@ -1,4 +1,4 @@
-# Hybrid Cloud Automated Provisioning Realized with Red Hat CloudForms
+# RHTE 2018: Hybrid Cloud Automated Provisioning
 
 
 ## (Outline and Documentation Links)
@@ -8,75 +8,70 @@
 
 If you follow the below steps on a green-field, configured, Red Hat CloudForms appliance(s), Hybrid Cloud Provisioning with Infrastructure Providers (RHEV, vCenter), a Configuration Management Provider (Satellite) and an Automation Provider (Ansible Tower) becomes a reality.  Simply follow the steps listed below and "it just works".
 
-This is a subset and modified version of the original document [https://github.com/RedHatOfficial/miq-RedHat-Satellite6/blob/master/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat-Satellite6/blob/master/INSTALL.md).
-
 # Assumptions:
-
-
 
 *   Red Hat CloudForms 4.5/4.6 up and running…
 *   Red Hat Satellite 6 configured…
 *   Ansible Tower setup (for post install configuration)...
 *   Infra Providers and networking are in place.
 
-
 # Additional Requirements:
-
-
 
 *   Each user, including the admin user, making provisioning requests must have an email address configured.  Provisioning requests will fail if initiated by any user without a configured email address.  The [General Configuration](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/general_configuration/configuration) document explains the process of creating users and editing users.
 
-
 # Configure Providers:
-
-
 
 *   Add Infrastructure, Configuration and Automation Providers as prescribed in [Managing Providers](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/managing_providers)
 
+## Provider Connection Info
+
+| Provider               | Provider Type  | URL                 | Username       | Password
+|------------------------|----------------|---------------------|----------------|----------
+| Red Hat Virtualization | Infrastructure | rhvm.example.com    | admin@internal | r3dh4t1!
+| VMware vCenter         | Infrastructure | vcenter.example.com | root           | r3dh4t1!
+| Red Hat Satellite      | Configuration  | rhvm.example.com    | admin@internal | r3dh4t1!
+| Ansible Tower          | Ansible Tower  | rhvm.example.com    | admin@internal | r3dh4t1!
 
 ## Connect Infrastructure Providers:
-
-
 
 *   Connect VMware vCenter
 *   Connect RHEV
 
-
 ## Add Configuration Management Provider:
-
-
 
 *   Add Red Hat Satellite Provider
 
-
 ## Connect Automation Provider:
-
-
 
 *   Connect Ansible Tower Provider
 
-
 # General Configuration:
 
-
-
 *   The Git Repositories Owner Role is disabled by default on a newly installed CloudForms appliance.  This role will need to be enabled in order to import the upstream Automate Domains.  Follow the guidelines in [General Configuration](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/general_configuration/configuration) in order to complete these steps.
-
 
 ## Enable and configure Git Repositories Owner Server Role:
   *   Enable 'Git Repositories Owner' Server Role
   *   Promote 'Git Repositories Owner' Role to Primary if necessary
   *   Start the 'Git Repositories Role' if necessary
 
-
 # Automate Domains:
-
 
 ## Configuration Domain:
 
-
-
 *   [Understanding the Automate Model - Creating a Domain](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/scripting_actions_in_cloudforms/understanding-the-automate-model#creating-a-domain) covers the steps required to create a domain within the Automate model.  The recommendation is to create a domain with a name of Configuration but the name of the domain is inconsequential.  The ordering of the domains is important and that will be covered later in this document.
+
+## Import Upstream Domains:
+
+*   [Understanding the Automate Model - Importing a Domain](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/scripting_actions_in_cloudforms/understanding-the-automate-model#importing-a-domain) explains how to import the required Automate domains.  The relevant repositories with links are included below.  In order to control release, you may want to choose a specific branch or tag.
+
+### Import Automate Domains from RedHatOfficial Github:
+
+*   Import miq-Utilities
+    *   [https://github.com/RedHatOfficial/miq-Utilities.git](https://github.com/RedHatOfficial/miq-Utilities.git)
+		*   For the purposes of this lab, select Tag `v9.1`
+*   Import miq-RedHat-Satellite6
+    *   [https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git](https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git)
+		*   For the purposes of this lab, select Tag `v8.4`
 
 ### Create Configuration Domain:
 
@@ -84,7 +79,7 @@ This is a subset and modified version of the original document [https://github.c
 
 ### Network Configuration:
 
-*   Override RedHatConsulting_Utilities/Infrastructure/Network/Configuration by copying the instance into your new configuration domain.
+*   Override RedHatConsulting_Utilities/Infrastructure/Network/Configuration by copying the Class into your new configuration domain.
     *   Add a new instance for each provisioning and destination VLAN
     *   I.e.
         *   Name: ovirtmgmt
@@ -93,21 +88,6 @@ This is a subset and modified version of the original document [https://github.c
         *   (network_gateway): 10.10.10.1
         *   (network_nameservers: [10.10.10.2,10.10.10.3]
         *   (network_ddi_provider): satellite
-
-
-## Import Upstream Domains:
-
-*   [Understanding the Automate Model - Importing a Domain](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/scripting_actions_in_cloudforms/understanding-the-automate-model#importing-a-domain) explains how to import the required Automate domains.  The relevant repositories with links are included below.  In order to control release, you may want to choose a specific branch or tag.
-
-### Import Automate Domains from RedHatOfficial Github:
-
-*   Import miq-RedHat-Satellite6
-    *   [https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git](https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git)
-		*   For the purposes of this lab, select Tag `v8.3`
-*   Import miq-Utilities
-    *   [https://github.com/RedHatOfficial/miq-Utilities.git](https://github.com/RedHatOfficial/miq-Utilities.git)
-		*   For the purposes of this lab, select Tag `v9.1`
-
 
 ## Automate Domain Priority:
 
@@ -123,29 +103,24 @@ This is a subset and modified version of the original document [https://github.c
 
 *   A pre-configured catalog and associated service dialog are provided as part of the miq-RedHat-Satellite6 project on Github.  Complete the following steps to import these items.
 
-
 ## Install cfme-rhconsulting-scripts per instructions:
 
 *  For the purpose of this lab, the cfme-rhconsulting-scripts repository has been cloned to `/root/src/cfme-rhconfulting-scripts/` and installed per the instructions in the link below.  Installation of these scripts provides the miqimport command required in the next steps.
 
 *   [https://github.com/rhtconsulting/cfme-rhconsulting-scripts#install](https://github.com/rhtconsulting/cfme-rhconsulting-scripts#install)
 
-
 ## Import Service Dialog and Catalog Items:
 
-*   We have cloned tag v8.3 of the miq-RedHat-Satellite6 repository to `/root/src/miq-RedHat-Satellite6` for your convenience.
+*   We have cloned tag v8.4 of the miq-RedHat-Satellite6 repository to `/root/src/miq-RedHat-Satellite6` for your convenience.
     * The repository contains dialogs for versions CFME 4.5 (5.8) and 4.6 (5.9), the latter of which is being used for this lab.
 *   Import Service Dialog
     *   miqimport service_dialogs miq-RedHat-Satellite6/Dialogs/v5.9
 *   Import Catalog
     *   miqimport service_catalogs miq-RedHat-Satellite6/Catalogs/v5.9
 
-
 # Tagging:
 
-
 ## Tag Categories:
-
 
 ### Environment Tag Category
 
@@ -167,8 +142,6 @@ This is a subset and modified version of the original document [https://github.c
     *   Single Value: Yes
 
 ## Tags:
-
-
 
 *   In order to auto-populate some of the tags, you can simply open the service dialog at this point.  Once the dialog has opened, simply close the dialog and continue with tagging.  This will create the appropriate environment and location tags based on your Satellite configuration.
 
@@ -196,10 +169,7 @@ This is a subset and modified version of the original document [https://github.c
     *   Apply appropriate Operating System Tag
     *   Save
 
-
 # The Proof is in the Pudding…
-
-
 
 *   Now is the time to test your configuration.  Ensure you have your logs open in case of configuration errors.
 *   Open the Service Dialog
@@ -217,4 +187,4 @@ This is a subset and modified version of the original document [https://github.c
     *   Pull Requests
     *   Pull Requests
 
-*  To find the install document which includes configuring a Cloud Provider (AWS), please refer to [https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md)
+*  To find the complete installation document which includes configuring a Cloud Provider (AWS), please refer to [https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md)
