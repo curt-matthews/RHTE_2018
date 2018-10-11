@@ -149,6 +149,8 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 ## Tags:
 
+### Auto-Populate Satellite Tags
+
 *   In order to auto-populate some of the tags, you can simply open the service dialog at this point.  Once the dialog has opened, simply close the dialog and continue with tagging.  This will create the appropriate environment and location tags based on your Satellite configuration.
 
 ### Operating System Tags:
@@ -164,8 +166,10 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 *   Environment Tags
     *   Tag each Provider with appropriate environment tag(s)
 *   Provisioning Scope: All
-    *   Tag Hosts as appropriate
-    *   Tag Datastores as appropriate
+    *   Navigate to Compute / Infrastructure / Hosts
+        *   For the purposes of this lab, tag all hosts
+    *   Navigate to Compute / Infrastructure / Datastores
+        *   For the purposes of this lab, tag ```vmstore00``` and ```vsphere1-datastore```
 *   Tag Templates
     *   Navigate to Compute / Infrastructure / Virtual Machines
     *   Select Templates
