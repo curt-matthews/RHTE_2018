@@ -17,6 +17,13 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 # Additional Requirements:
 
+    
+# fix rhvm
+* ssh to workstation
+* ssh rhvm.example.com
+* /usr/local/bin/update-ravello.sh
+
+
 ## TL;DR - Assign an email address to the admin user.
 
 *   Each user, including the admin user, making provisioning requests must have an email address configured.  Provisioning requests will fail if initiated by any user without a configured email address.  The [General Configuration](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/general_configuration/configuration) document explains the process of creating users and editing users.
@@ -197,16 +204,10 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
     *   Pull Requests
     *   Pull Requests
     *   Pull Requests
-    
-* fix rhvm
-* ssh to workstation
-* ssh rhvm.example.com
-* /usr/local/bin/update-ravello.sh
 
 *  To find the complete installation document which includes configuring a Cloud Provider (AWS), please refer to [https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md)
 
-** To get kick start working **
-Fix Mongodb
+# Fix Mongodb
 * ssh your workstation
 * ssh cap2.example.com
 * vi /etc/mongod.conf
@@ -220,6 +221,7 @@ sudo -u apache pulp-manage-db
 katello-service restart
 ```
 
+# Sync kickstart
 
 * Content --> Content Views --> RHEL7 --> Yum Content --> Repositories
 * Add
