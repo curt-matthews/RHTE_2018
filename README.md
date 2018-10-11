@@ -163,19 +163,21 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 *   Infrastructure Providers require a multitude of tags based on your organization's configuration and design.  The providers being used for automated provisioning need the following tags applied appropriate to your organization's goals.
 *   Location Tags
     *   Tag each Provider with appropriate location tag
+		    *    VMware vCenter - vCenter
+		    *    Red Hat Virtualization - RHV
 *   Environment Tags
-    *   Tag each Provider with appropriate environment tag(s)
+    *   Tag both Providers with ```Dev``` tag
 *   Provisioning Scope: All
     *   Navigate to Compute / Infrastructure / Hosts
-        *   For the purposes of this lab, tag all hosts
+        *   For the purposes of this lab, tag all available hosts
     *   Navigate to Compute / Infrastructure / Datastores
         *   For the purposes of this lab, tag ```vmstore00``` and ```vsphere1-datastore```
 *   Tag Templates
     *   Navigate to Compute / Infrastructure / Virtual Machines
     *   Select Templates
-    *   Select the template(s) to be tagged
+    *   Select the ```rhel7_diskless``` template to be tagged for ```VMware vCenter``` and ```Red Hat Virtualization``` Providers
     *   Select Policy / Edit Tags
-    *   Apply appropriate Operating System Tag
+    *   Apply ```RHEL 7``` Operating System Tag
     *   Save
 
 # The Proof is in the Pudding…
@@ -184,7 +186,7 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 *   Open the Service Dialog
     *   If any script errors exist, refer to logs to determine the issue
 *   Populate the Dialog
-    *   The lower portion of the form will change as entries are populated.  Use this box to verify your selections.
+    *   The Infrastructure tab of the form will change as entries are populated.  Use this to verify your selections.
 *   Submit the Order
 *   Watch the Requests and the Logs
 *   Rejoice as you see your Hybrid Cloud Automated Provisioning Realized
