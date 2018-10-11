@@ -120,13 +120,9 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 *   We have cloned tag v8.5 of the miq-RedHat-Satellite6 repository to `/root/src/miq-RedHat-Satellite6` on cf.example.com for your convenience.
     * The repository contains dialogs for versions CFME 4.5 (5.8) and 4.6 (5.9), the latter of which is being used for this lab.
 *   Import Service Dialog
-		```
-    *   miqimport service_dialogs /root/src/miq-RedHat-Satellite6/Dialogs/v5.9
-    ```
+    *   ```miqimport service_dialogs /root/src/miq-RedHat-Satellite6/Dialogs/v5.9```
 *   Import Catalog
-    ```
-    *   miqimport service_catalogs /root/src/miq-RedHat-Satellite6/Catalogs/v5.9
-    ```
+    *   ```miqimport service_catalogs /root/src/miq-RedHat-Satellite6/Catalogs/v5.9```
 
 # Tagging:
 
