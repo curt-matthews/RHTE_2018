@@ -229,4 +229,4 @@ katello-service restart
 * Add repositiry
 * ssh to workstation
 * ssh sat.example.com
-* hammer -d content capsule synchronize --id=1
+* hammer -d capsule content synchronize --id=2
