@@ -202,8 +202,11 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 ** To get kick start working **
 Fix Mongodb
+* ssh your workstation
+* ssh cap2.example.com
 * vi /etc/mongod.conf
 * set `dbpath=/mongod/mongodb`
+* run the following
 
 ```
 katello-service stop
