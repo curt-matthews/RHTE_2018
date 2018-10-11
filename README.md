@@ -6,7 +6,7 @@
 
 # Abstract:
 
-If you follow the below steps on a green-field, configured, Red Hat CloudForms appliance(s), Hybrid Cloud Provisioning with Infrastructure Providers (RHEV, vCenter), a Configuration Management Provider (Satellite) and an Automation Provider (Ansible Tower) becomes a reality.  Simply follow the steps listed below and "it just works".
+If you follow the below steps on a green-field, configured, Red Hat CloudForms appliance(s), Hybrid Cloud Provisioning with Infrastructure Providers (RHEV, vCenter), a Configuration Management Provider (Satellite) and an Automation Provider (Ansible Tower), becomes a reality.  Simply follow the steps listed below and "it just works".
 
 # Assumptions:
 
@@ -25,12 +25,12 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 ## Provider Connection Info
 
-| Provider               | Provider Type  | URL                 | Username       | Password
-|------------------------|----------------|---------------------|----------------|----------
-| Red Hat Virtualization | Infrastructure | rhvm.example.com    | admin@internal | r3dh4t1!
-| VMware vCenter         | Infrastructure | vcenter.example.com | root           | r3dh4t1!
-| Red Hat Satellite      | Configuration  | rhvm.example.com    | admin@internal | r3dh4t1!
-| Ansible Tower          | Ansible Tower  | rhvm.example.com    | admin@internal | r3dh4t1!
+| Provider               | Provider Type    | URL                  | Username       | Password
+|------------------------|------------------|----------------------|----------------|----------
+| Red Hat Virtualization | Infrastructure   | rhvm.example.com     | admin@internal | r3dh4t1!
+| VMware vCenter         | Infrastructure   | vcenter.example.com  | root           | r3dh4t1!
+| Red Hat Satellite      | Configuration    | sat.example.com      | admin          | r3dh4t1!
+| Ansible Tower          | Automation Tower | ansible1.example.com | admin          | r3dh4t1!
 
 ## Connect Infrastructure Providers:
 
@@ -71,7 +71,7 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 		*   For the purposes of this lab, select Tag `v9.1`
 *   Import miq-RedHat-Satellite6
     *   [https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git](https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git)
-		*   For the purposes of this lab, select Tag `v8.4`
+		*   For the purposes of this lab, select Tag `v8.5`
 
 ### Create Configuration Domain:
 
@@ -108,7 +108,7 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 ## Import Service Dialog and Catalog Items:
 
-*   We have cloned tag v8.4 of the miq-RedHat-Satellite6 repository to `/root/src/miq-RedHat-Satellite6` on cf.example.com for your convenience.
+*   We have cloned tag v8.5 of the miq-RedHat-Satellite6 repository to `/root/src/miq-RedHat-Satellite6` on cf.example.com for your convenience.
     * The repository contains dialogs for versions CFME 4.5 (5.8) and 4.6 (5.9), the latter of which is being used for this lab.
 *   Import Service Dialog
     *   miqimport service_dialogs miq-RedHat-Satellite6/Dialogs/v5.9
