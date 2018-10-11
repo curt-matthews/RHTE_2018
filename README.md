@@ -17,6 +17,8 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 # Additional Requirements:
 
+## TL;DR - Assign an email address to the admin user.
+
 *   Each user, including the admin user, making provisioning requests must have an email address configured.  Provisioning requests will fail if initiated by any user without a configured email address.  The [General Configuration](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/general_configuration/configuration) document explains the process of creating users and editing users.
 
 # Configure Providers:
@@ -25,12 +27,12 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 ## Provider Connection Info
 
-| Provider               | Provider Type    | URL                  | Username       | Password
-|------------------------|------------------|----------------------|----------------|----------
-| Red Hat Virtualization | Infrastructure   | rhvm.example.com     | admin@internal | r3dh4t1!
-| VMware vCenter         | Infrastructure   | vcenter.example.com  | root           | r3dh4t1!
-| Red Hat Satellite      | Configuration    | sat.example.com      | admin          | r3dh4t1!
-| Ansible Tower          | Automation Tower | ansible1.example.com | admin          | r3dh4t1!
+| Provider Name          | Provider Type             | URL                  | Username       | Password
+|------------------------|---------------------------|----------------------|----------------|----------
+| Red Hat Virtualization | Infrastructure            | rhvm.example.com     | admin@internal | r3dh4t1!
+| VMware vCenter         | Infrastructure            | vcenter.example.com  | root           | r3dh4t1!
+| Red Hat Satellite      | Configuration             | sat.example.com      | admin          | r3dh4t1!
+| Ansible Tower          | Automation: Ansible Tower | ansible1.example.com | admin          | r3dh4t1!
 
 ## Connect Infrastructure Providers:
 
@@ -56,10 +58,6 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 # Automate Domains:
 
-## Configuration Domain:
-
-*   [Understanding the Automate Model - Creating a Domain](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/scripting_actions_in_cloudforms/understanding-the-automate-model#creating-a-domain) covers the steps required to create a domain within the Automate model.  The recommendation is to create a domain with a name of Configuration but the name of the domain is inconsequential.  The ordering of the domains is important and that will be covered later in this document.
-
 ## Import Upstream Domains:
 
 *   [Understanding the Automate Model - Importing a Domain](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/scripting_actions_in_cloudforms/understanding-the-automate-model#importing-a-domain) explains how to import the required Automate domains.  The relevant repositories with links are included below.  In order to control release, you may want to choose a specific branch or tag.
@@ -73,6 +71,10 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
     *   [https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git](https://github.com/RedHatOfficial/miq-RedHat-Satellite6.git)
 		*   For the purposes of this lab, select Tag `v8.5`
 
+## Create Configuration Domain:
+
+*   [Understanding the Automate Model - Creating a Domain](https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.5/html/scripting_actions_in_cloudforms/understanding-the-automate-model#creating-a-domain) covers the steps required to create a domain within the Automate model.  The recommendation is to create a domain with a name of Configuration but the name of the domain is inconsequential.  The ordering of the domains is important and that will be covered later in this document.
+
 ### Create Configuration Domain:
 
 *   Create Configuration Domain and Enable
@@ -81,8 +83,15 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 
 *   Override RedHatConsulting_Utilities/Infrastructure/Network/Configuration by copying the Class into your new configuration domain.
     *   Add a new instance for each provisioning and destination VLAN
-    *   I.e.
-        *   Name: ovirtmgmt
+    *   RHV Network Settings
+        *   Name: pxenet
+        *   (network purpose): [provisioning, destination]
+        *   (network_address_space): 10.10.10.0/24
+        *   (network_gateway): 10.10.10.1
+        *   (network_nameservers: [10.10.10.2,10.10.10.3]
+        *   (network_ddi_provider): satellite
+    *   vCenter Network Settings
+        *   Name: VM Network
         *   (network purpose): [provisioning, destination]
         *   (network_address_space): 10.10.10.0/24
         *   (network_gateway): 10.10.10.1
