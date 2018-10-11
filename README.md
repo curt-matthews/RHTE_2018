@@ -206,6 +206,21 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 *  To find the complete installation document which includes configuring a Cloud Provider (AWS), please refer to [https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md)
 
 ** To get kick start working **
+Fix Mongodb
+* ssh your workstation
+* ssh cap2.example.com
+* vi /etc/mongod.conf
+* set `dbpath=/mongod/mongodb`
+* run the following
+
+```
+katello-service stop
+systemctl start mongod
+sudo -u apache pulp-manage-db
+katello-service restart
+```
+
+
 * Content --> Content Views --> RHEL7 --> Yum Content --> Repositories
 * Add
 * Select "Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.3"
