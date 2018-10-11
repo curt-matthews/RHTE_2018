@@ -204,7 +204,8 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
 Fix Mongodb
 * vi /etc/mongod.conf
 * set `dbpath=/mongod/mongodb`
-* ```
+
+```
 katello-service stop
 systemctl start mongod
 sudo -u apache pulp-manage-db
