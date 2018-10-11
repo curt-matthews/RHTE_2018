@@ -197,6 +197,11 @@ If you follow the below steps on a green-field, configured, Red Hat CloudForms a
     *   Pull Requests
     *   Pull Requests
     *   Pull Requests
+    
+* fix rhvm
+* ssh to workstation
+* ssh rhvm.example.com
+* /usr/local/bin/update-ravello.sh
 
 *  To find the complete installation document which includes configuring a Cloud Provider (AWS), please refer to [https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md](https://github.com/RedHatOfficial/miq-RedHat_Satellite6/INSTALL.md)
 
